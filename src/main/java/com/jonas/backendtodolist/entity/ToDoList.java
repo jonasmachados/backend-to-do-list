@@ -37,12 +37,18 @@ public class ToDoList {
     @Length(min = 3, max = 20, message = "Name must have between 3 to 20 characters")
     private String name;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'", timezone = "GMT")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dateInitial;
 
     @OneToMany
     private List<Task> listTasks = new ArrayList<>();
 
+    public ToDoList(Long id, String name, Instant dateInitial) {
+        this.id = id;
+        this.name = name;
+        this.dateInitial = dateInitial;
+    }
+    
     public void addTask() {
     }
 

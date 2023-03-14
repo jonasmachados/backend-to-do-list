@@ -31,7 +31,7 @@ public class Task {
     private Long id;
 
     @NotEmpty(message = "Title is required!")
-    @Length(min = 3, max = 20, message = "Title must have between 3 to 20 characters")
+    @Length(min = 3, max = 40, message = "Title must have between 3 to 20 characters")
     private String title;
 
     @NotEmpty(message = "Content is required!")
@@ -40,7 +40,7 @@ public class Task {
 
     private Integer taskStatus;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'", timezone = "GMT")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dateInitial;
 
     public Task(Long id, String title, String content, TaskStatus taskStatus, Instant dateInitial) {
