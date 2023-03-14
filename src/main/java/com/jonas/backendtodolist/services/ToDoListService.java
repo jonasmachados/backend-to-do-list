@@ -17,10 +17,14 @@ public class ToDoListService {
     public List<ToDoList> findAll() {
         return repository.findAll();
     }
-    
+
     public ToDoList findById(Long id) {
         Optional<ToDoList> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public ToDoList insert(ToDoList obj) {
+        return repository.save(obj);
     }
 
 }
