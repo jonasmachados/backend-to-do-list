@@ -4,20 +4,20 @@ import com.jonas.backendtodolist.entity.Task;
 import com.jonas.backendtodolist.entity.ToDoList;
 import com.jonas.backendtodolist.entity.enums.TaskStatus;
 import com.jonas.backendtodolist.repositories.TaskRepository;
-import com.jonas.backendtodolist.repositories.ToDoListkRepository;
 import java.time.Instant;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import com.jonas.backendtodolist.repositories.ToDoListRepository;
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
     @Autowired
-    private ToDoListkRepository toDoListkRepository;
+    private ToDoListRepository toDoListkRepository;
 
     @Autowired
     private TaskRepository taskRepository;
