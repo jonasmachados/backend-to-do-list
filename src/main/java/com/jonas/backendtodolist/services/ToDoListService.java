@@ -6,6 +6,7 @@ import com.jonas.backendtodolist.services.exceptions.DatabaseException;
 import com.jonas.backendtodolist.services.exceptions.ResourceNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -38,6 +39,21 @@ public class ToDoListService {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    public ToDoList update(Long id, ToDoList obj) {
+        try {
+            ToDoList entity = repository.getOne(id); //GetOne let a obj mapped for to JPA, dont go to DB
+            updateData(entity, obj);
+            return repository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+    private void updateData(ToDoList entity, ToDoList obj) {
+        entity.setName(obj.getName());
+        entity.setDateInitial(obj.getDateInitial());
     }
 
 }
