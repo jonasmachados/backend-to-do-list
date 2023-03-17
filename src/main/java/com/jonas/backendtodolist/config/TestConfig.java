@@ -25,13 +25,13 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        ToDoList toDoList = new ToDoList(null, "Main Project", Instant.parse("2019-06-20T21:53:07Z"));
+        ToDoList toDoList = new ToDoList(null, "Main Project", "2019-06-20T21:53:07Z");
         toDoListkRepository.saveAll(Arrays.asList(toDoList));
 
-        Task task1 = new Task(null, "Buy dog food.", "Content ...", TaskStatus.NOT_STARTED, Instant.parse("2019-06-20T21:53:07Z"));
-        Task task2 = new Task(null, "Read book It Starts with Us.", "page 223", TaskStatus.IN_PROGRESS, Instant.parse("2019-06-20T21:53:07Z"));
-        Task task3 = new Task(null, "Title 3", "Content ...", TaskStatus.IN_PROGRESS, Instant.parse("2019-06-20T21:53:07Z"));
-        Task task4 = new Task(null, "Title 4", "Content ...", TaskStatus.COMPLETED, Instant.parse("2019-06-20T21:53:07Z"));
+        Task task1 = new Task(null, "Buy dog food.", "Content ...", TaskStatus.NOT_STARTED, "2019-06-20T21:53:07Z");
+        Task task2 = new Task(null, "Read book It Starts with Us.", "page 223", TaskStatus.IN_PROGRESS, "2019-06-20T21:53:07Z");
+        Task task3 = new Task(null, "Title 3", "Content ...", TaskStatus.IN_PROGRESS, "2019-06-20T21:53:07Z");
+        Task task4 = new Task(null, "Title 4", "Content ...", TaskStatus.COMPLETED, "2019-06-20T21:53:07Z");
         taskRepository.saveAll(Arrays.asList(task1, task2, task3, task4));
 
         toDoList.getListTasks().add(task1);

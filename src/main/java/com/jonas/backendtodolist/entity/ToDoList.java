@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,13 +38,14 @@ public class ToDoList {
     @Length(min = 3, max = 20, message = "Name must have between 3 to 20 characters")
     private String name;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant dateInitial;
+    @NotNull(message = "Campo date é requerido")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", shape = JsonFormat.Shape.STRING, timezone = "GMT")
+    private String dateInitial;
 
     @OneToMany
     private List<Task> listTasks = new ArrayList<>();
 
-    public ToDoList(Long id, String name, Instant dateInitial) {
+    public ToDoList(Long id, String name, String dateInitial) {
         this.id = id;
         this.name = name;
         this.dateInitial = dateInitial;
