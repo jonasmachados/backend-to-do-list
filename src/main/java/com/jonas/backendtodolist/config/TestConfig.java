@@ -26,7 +26,9 @@ public class TestConfig implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         ToDoList toDoList = new ToDoList(null, "Main Project", "2019-06-20T21:53:07Z");
-        toDoListkRepository.saveAll(Arrays.asList(toDoList));
+        ToDoList toDoListSecond = new ToDoList(null, "Second Project", "2020-06-20T21:53:07Z");
+        ToDoList toDoListThird = new ToDoList(null, "Third Project", "2021-06-20T21:53:07Z");
+        toDoListkRepository.saveAll(Arrays.asList(toDoList, toDoListSecond, toDoListThird));
 
         Task task1 = new Task(null, "Buy dog food.", "Content ...", TaskStatus.NOT_STARTED, "2019-06-20T21:53:07Z");
         Task task2 = new Task(null, "Read book It Starts with Us.", "page 223", TaskStatus.IN_PROGRESS, "2019-06-20T21:53:07Z");
