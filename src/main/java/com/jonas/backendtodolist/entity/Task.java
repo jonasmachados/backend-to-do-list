@@ -30,7 +30,7 @@ public class Task {
     private Long id;
 
     @NotEmpty(message = "Title is required!")
-    @Length(min = 3, max = 40, message = "Title must have between 3 to 20 characters")
+    @Length(min = 3, max = 50, message = "Title must have between 3 to 20 characters")
     private String title;
 
     @NotEmpty(message = "Content is required!")
