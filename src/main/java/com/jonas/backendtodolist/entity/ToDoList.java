@@ -1,7 +1,6 @@
 package com.jonas.backendtodolist.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -53,7 +52,8 @@ public class ToDoList {
         this.dateInitial = dateInitial;
     }
     
-    public void addTask() {
+    public void addTask(Task task) {
+        listTasks.add(task);
     }
 
     public void removeTask() {

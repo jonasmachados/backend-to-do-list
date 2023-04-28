@@ -1,5 +1,6 @@
 package com.jonas.backendtodolist.resources;
 
+import com.jonas.backendtodolist.entity.Task;
 import com.jonas.backendtodolist.entity.ToDoList;
 import com.jonas.backendtodolist.services.ToDoListService;
 import java.net.URI;
@@ -48,10 +49,20 @@ public class ToDoListResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-    
+
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ToDoList> update(@PathVariable Long id, @RequestBody ToDoList obj){
+    public ResponseEntity<ToDoList> update(@PathVariable Long id, @RequestBody ToDoList obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
+
+    @PostMapping("/{todoListId}/tasks")
+    public ResponseEntity<Task> addTaskToList(@PathVariable Long todoListId, @RequestBody Task task) {
+        ToDoList toDoList = service.findById(todoListId);
+        service.addTask(todoListId, task);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(toDoList.getId()).toUri();
+        return ResponseEntity.created(uri).body(task);
+    }
+
 }

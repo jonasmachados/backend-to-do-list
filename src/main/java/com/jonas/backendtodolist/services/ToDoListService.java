@@ -1,6 +1,8 @@
 package com.jonas.backendtodolist.services;
 
+import com.jonas.backendtodolist.entity.Task;
 import com.jonas.backendtodolist.entity.ToDoList;
+import com.jonas.backendtodolist.repositories.TaskRepository;
 import com.jonas.backendtodolist.repositories.ToDoListRepository;
 import com.jonas.backendtodolist.services.exceptions.DatabaseException;
 import com.jonas.backendtodolist.services.exceptions.ResourceNotFoundException;
@@ -17,6 +19,9 @@ public class ToDoListService {
 
     @Autowired
     private ToDoListRepository repository;
+
+    @Autowired
+    private TaskRepository taskRepository;
 
     public List<ToDoList> findAll() {
         return repository.findAll();
@@ -54,6 +59,23 @@ public class ToDoListService {
     private void updateData(ToDoList entity, ToDoList obj) {
         entity.setName(obj.getName());
         entity.setDateInitial(obj.getDateInitial());
+    }
+
+    private ToDoList verifyIfExists(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public ToDoList save(ToDoList toDoList) {
+        return repository.save(toDoList);
+    }
+
+    public ToDoList addTask(Long id, Task task) {
+        ToDoList toDoList = verifyIfExists(id);
+        task = taskRepository.save(task);
+        toDoList.addTask(task);
+        ToDoList savedToDoList = repository.save(toDoList);
+        return savedToDoList;
     }
 
 }
