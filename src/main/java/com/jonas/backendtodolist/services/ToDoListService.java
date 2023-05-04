@@ -46,19 +46,15 @@ public class ToDoListService {
         }
     }
 
-    public ToDoList update(Long id, ToDoList obj) {
-        try {
-            ToDoList entity = repository.getOne(id); //GetOne let a obj mapped for to JPA, dont go to DB
-            updateData(entity, obj);
-            return repository.save(entity);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(id);
-        }
+    public ToDoList updateName(Long id, ToDoList toDoList) {
+        ToDoList entity = getToDoListById(id);
+        entity.setName(toDoList.getName());
+        return repository.save(entity);
     }
 
-    private void updateData(ToDoList entity, ToDoList obj) {
-        entity.setName(obj.getName());
-        entity.setDateInitial(obj.getDateInitial());
+    private ToDoList getToDoListById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     private ToDoList verifyIfExists(Long id) {
