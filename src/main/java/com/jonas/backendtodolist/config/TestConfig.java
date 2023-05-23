@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import com.jonas.backendtodolist.repositories.ToDoListRepository;
 
 @Configuration
-@Profile("test")
+@Profile("prod")
 public class TestConfig implements CommandLineRunner {
 
     @Autowired
