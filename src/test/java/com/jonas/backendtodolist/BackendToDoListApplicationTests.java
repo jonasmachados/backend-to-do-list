@@ -6,8 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class BackendToDoListApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void main() {
+        BackendToDoListApplication.main(new String[]{});
+    }
 
 }
