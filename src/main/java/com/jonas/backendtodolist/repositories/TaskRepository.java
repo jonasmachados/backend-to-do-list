@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    @Query(value = "SELECT TITLE, CONTENT, TASK_STATUS, DATE_INITIAL FROM TB_TASK"
+    @Query(value = "SELECT ID, TITLE, CONTENT, TASK_STATUS, DATE_INITIAL FROM TB_TASK"
             + " INNER JOIN TB_TO_DO_LIST_LIST_TASKS"
             + " ON TB_TO_DO_LIST_LIST_TASKS.LIST_TASKS_ID = TB_TASK.ID"
             + " WHERE TO_DO_LIST_ID = :id", nativeQuery = true)

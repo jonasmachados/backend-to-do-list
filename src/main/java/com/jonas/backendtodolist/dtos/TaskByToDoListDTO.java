@@ -1,4 +1,4 @@
-package dtos;
+package com.jonas.backendtodolist.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jonas.backendtodolist.entity.enums.TaskStatus;
@@ -13,7 +13,7 @@ public class TaskByToDoListDTO {
     private String title;
     private String content;
     private Integer taskStatus;
-       
+
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", shape = JsonFormat.Shape.STRING, timezone = "GMT")
     private String dateInitial;
 
@@ -26,14 +26,14 @@ public class TaskByToDoListDTO {
         setTaskStatus(taskStatus);
         this.dateInitial = dateInitial;
     }
-    
+
     public TaskByToDoListDTO(TaskByToDoListProjection projection) {
         title = projection.getTitle();
         content = projection.getContent();
         taskStatus = projection.getTask_Status();
         dateInitial = projection.getDate_Initial();
     }
-    
+
     public TaskStatus getTaskStatus() {
         return TaskStatus.valueOf(taskStatus);
     }
@@ -43,5 +43,5 @@ public class TaskByToDoListDTO {
             this.taskStatus = taskStatus.getCode();
         }
     }
-  
+
 }

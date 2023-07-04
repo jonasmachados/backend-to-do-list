@@ -2,6 +2,7 @@ package com.jonas.backendtodolist.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jonas.backendtodolist.entity.enums.TaskStatus;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ import org.hibernate.validator.constraints.Length;
 @ToString
 @Entity
 @Table(name = "tb_task")
-public class Task {
+public class Task implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
